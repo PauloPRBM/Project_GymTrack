@@ -33,3 +33,68 @@ n/a
 - Paulo R. de B. Mendes - [Link do LinkedIn](https://www.linkedin.com/in/paulo-mendes/)
 - Pierre Costa S. de O. N. - [Link do LinkedIn](https://www.linkedin.com/in/pierre-costa-b1b51314a/)
 - Ylson Santos - [Link do LinkedIn](https://www.linkedin.com/in/pierre-costa-b1b51314a/)
+
+## Diagrama de Classes
+
+```mermaid
+classDiagram
+    %% Definição das classes com seus atributos
+    class Aluno {
+        +int id
+        +string nome
+        +string cpf
+        +string endereco
+        +string telefone
+        +string email
+        +Date dataNascimento
+    }
+    class Treino {
+        +int id
+        +string nome
+        +string descricao
+        +Date dataInicio
+        +Date dataFim
+    }
+    class Exercicio {
+        +int id
+        +string nome
+        +string descricao
+        +string grupoMuscular
+    }
+    class Instrutor {
+        +int id
+        +string nome
+        +string cref
+        +string telefone
+        +string email
+    }
+    class AvaliacaoFisica {
+        +int id
+        +Date dataAvaliacao
+        +float peso
+        +float altura
+        +float percentualGordura
+        +float massaMuscular
+    }
+    class Pagamento {
+        +int id
+        +Date dataPagamento
+        +float valor
+        +string metodoPagamento
+    }
+    class Plano {
+        +int id
+        +string nome
+        +string descricao
+        +float valorMensal
+    }
+
+    %% Definição dos relacionamentos com cardinalidades
+    Aluno "1" --> "0..*" AvaliacaoFisica : realiza
+    Aluno "1" --> "0..*" Pagamento : efetua
+    Aluno "1" --> "1" Plano : assina
+    Aluno "1" --> "0..*" Treino : segue
+    Treino "1" --> "1..*" Exercicio : contém
+    Treino "1" --> "1" Instrutor : elaborado_por
+    Instrutor "1" --> "0..*" Treino : elabora
+```
